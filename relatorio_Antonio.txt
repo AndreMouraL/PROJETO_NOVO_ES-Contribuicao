@@ -1,1 +1,5 @@
 :> RELATÓRIO DE DESENVOLVIMENTO DO DEV: ANTONIO FIALHO<:
+    - O primeiro processo a ser implementado foi o cadastro de produto, pelo DEV: Antonio Fialho.
+- Dificuldades encontradas: 
+    > Primeiro momento tive dificuldade em entender os processo da metodologia TDD, passado uma consulta e observando 
+exemplos da mesma sendo aplicada, alguns obstaculos foram superados.

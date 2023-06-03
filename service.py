@@ -3,4 +3,5 @@ class CadastroProduto:
         self.produtosCadastrados = []
     def cadastrarProduto(self, produto):
         self.produtosCadastrados.append(produto)
-        return "Cadastrado com Sucesso!"
+        if len(self.produtosCadastrados) > 0:
+            return "Cadastrado com Sucesso!"
