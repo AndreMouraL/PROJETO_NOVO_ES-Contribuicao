@@ -37,5 +37,7 @@ def test_produto():
     respostaListar = listaProdutos.listarProdutos()
     assert "Todos os produtos foram encontrado!" == respostaListar
     
-    
+    deletaProduto  =  DeletaProduto(produtos_estoque)
+    respostaDeletar = deletaProduto.deletarProduto(3)
+    assert "Produto deletado com Sucesso!" ==  respostaDeletar
 test_produto()
