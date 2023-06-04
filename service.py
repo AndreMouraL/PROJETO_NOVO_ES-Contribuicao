@@ -34,3 +34,20 @@ class ListaProdutos:
         if len(self.produtosCadastrados) == len(self.listaEstoque):
             return "Todos os produtos foram encontrado!"
 
+
+class AtualizaProduto:
+    def __init__(self, estoque, id):
+        self.produtosCadastrados = estoque
+        self.idaltera = id
+    def atualizarProduto (self, sku, nome, fabricante, valor):
+        consultaProduto = ConsultaProduto(self.produtosCadastrados)
+        ProdutoAtualizando = consultaProduto.consultarProduto(self.idaltera)
+        indice = self.produtosCadastrados.index(ProdutoAtualizando)
+        ProdutoAtualizando.setSKU(sku)
+        ProdutoAtualizando.setNome(nome)
+        ProdutoAtualizando.setFabricante(fabricante)
+        ProdutoAtualizando.setValor(valor)
+        self.produtosCadastrados[indice] = ProdutoAtualizando
+        atualizaEstoque = CadastroProduto()
+        atualizaEstoque.produtosCadastrados == self.produtosCadastrados
+        return "Produto atualizado com Sucesso!"

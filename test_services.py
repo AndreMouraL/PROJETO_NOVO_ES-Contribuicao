@@ -2,6 +2,7 @@ from service import CadastroProduto
 from produto_model import Produto
 from service import ConsultaProduto
 from service import ListaProdutos
+from service import AtualizaProduto
 
 
 def test_produto():
@@ -31,6 +32,10 @@ def test_produto():
     respostaAtualizar = atualizaProduto.atualizarProduto('IMPEPSO641', 'IMPRESSORA', 'EPSON', 2650.55)
     assert "Produto atualizado com Sucesso!" == respostaAtualizar
 
+    listar_estoque = cadastroProduto.produtosCadastrados
+    listaProdutos =  ListaProdutos(listar_estoque)
+    respostaListar = listaProdutos.listarProdutos()
+    assert "Todos os produtos foram encontrado!" == respostaListar
     
     
 test_produto()
