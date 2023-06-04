@@ -5,3 +5,8 @@ class CadastroProduto:
         self.produtosCadastrados.append(produto)
         if len(self.produtosCadastrados) > 0:
             return "Cadastrado com Sucesso!"
+
+
+            
+
+
