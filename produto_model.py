@@ -20,3 +20,15 @@ class Produto:
 
     def getValor(self):
         return self.valor
+    
+    def setSKU(self, novo_codigo):
+        self.SKU = novo_codigo
+
+    def setNome(self, novo_nome):
+        self.nome = novo_nome
+
+    def setFabricante(self, novo_fabricante):
+        self.fabricante = novo_fabricante
+
+    def setValor(self, novo_valor):
+        self.valor = novo_valor

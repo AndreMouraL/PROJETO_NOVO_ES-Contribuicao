@@ -1,3 +1,5 @@
+from produto_model import Produto
+
 class CadastroProduto:
     def __init__(self):
         self.produtosCadastrados = []
@@ -11,8 +13,8 @@ class ConsultaProduto:
         self.produtosCadastrados = estoque
     def consultarProduto (self, id_produto):
         for produto in self.produtosCadastrados:
-            if produto.ID == id_produto:
-                return "Produto encontrado com Sucesso!"
+            if produto.getID() == id_produto:
+                return produto
 
 
 class ListaProdutos:
@@ -31,3 +33,4 @@ class ListaProdutos:
             Produto = []
         if len(self.produtosCadastrados) == len(self.listaEstoque):
             return "Todos os produtos foram encontrado!"
+

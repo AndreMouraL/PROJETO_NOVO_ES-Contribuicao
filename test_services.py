@@ -3,6 +3,7 @@ from produto_model import Produto
 from service import ConsultaProduto
 from service import ListaProdutos
 
+
 def test_produto():
     produto1 = Produto('IMPBROHL1','IMPRESSORA','BROTHER',1625.50,1)
     produto2 = Produto('IMPBROHL2','IMPRESSORA','BROTHER',1625.50,2)
@@ -17,12 +18,19 @@ def test_produto():
 
     produtos_estoque = cadastroProduto.produtosCadastrados
     consultaProduto = ConsultaProduto(produtos_estoque) 
-    respostaConsulta= consultaProduto.consultarProduto(1)
-    assert "Produto encontrado com Sucesso!" == respostaConsulta
+    respostaConsulta = consultaProduto.consultarProduto(1)
+    assert 'produto_model.Produto object at' in str(respostaConsulta)
 
     listar_estoque = cadastroProduto.produtosCadastrados
     listaProdutos =  ListaProdutos(listar_estoque)
     respostaListar = listaProdutos.listarProdutos()
     assert "Todos os produtos foram encontrado!" == respostaListar
+
+    produtos_estoque = cadastroProduto.produtosCadastrados
+    atualizaProduto = AtualizaProduto(produtos_estoque,1)
+    respostaAtualizar = atualizaProduto.atualizarProduto('IMPEPSO641', 'IMPRESSORA', 'EPSON', 2650.55)
+    assert "Produto atualizado com Sucesso!" == respostaAtualizar
+
+    
     
 test_produto()
