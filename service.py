@@ -51,3 +51,15 @@ class AtualizaProduto:
         atualizaEstoque = CadastroProduto()
         atualizaEstoque.produtosCadastrados == self.produtosCadastrados
         return "Produto atualizado com Sucesso!"
+    
+class DeletaProduto:
+    def __init__(self, estoque):
+        self.produtosCadastrados = estoque
+    def deletarProduto(self, id):
+        consultaProduto = ConsultaProduto(self.produtosCadastrados)
+        Produtodeletando = consultaProduto.consultarProduto(id)
+        indice = self.produtosCadastrados.index(Produtodeletando)
+        del self.produtosCadastrados[indice]
+        atualizaEstoque = CadastroProduto()
+        atualizaEstoque.produtosCadastrados == self.produtosCadastrados
+        return "Produto deletado com Sucesso!"

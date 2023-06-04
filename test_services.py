@@ -3,7 +3,7 @@ from produto_model import Produto
 from service import ConsultaProduto
 from service import ListaProdutos
 from service import AtualizaProduto
-
+from service import DeletaProduto
 
 def test_produto():
     produto1 = Produto('IMPBROHL1','IMPRESSORA','BROTHER',1625.50,1)
