@@ -1,1 +1,4 @@
 :> RELATÓRIO DE DESENVOLVIMENTO DO DEV: ANDRÉ MOURA<:
+Dificuldades:
+A dificuldade foi na chamada das funções [service e test_services] que não retornava o objeto.
+e na execução do teste.

@@ -1,6 +1,6 @@
 from service import CadastroProduto
 from produto_model import Produto
-
+from service import ConsultaProduto
 
 def test_produto():
     produto = Produto('IMPBROHL1','IMPRESSORA','BROTHER',1625.50,1)
