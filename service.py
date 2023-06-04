@@ -15,4 +15,19 @@ class ConsultaProduto:
                 return "Produto encontrado com Sucesso!"
 
 
-
+class ListaProdutos:
+    def __init__(self, estoque):
+        self.produtosCadastrados = estoque
+        self.listaEstoque = []
+    def listarProdutos (self):
+        Produto = []
+        for produto in self.produtosCadastrados:
+            Produto.append(produto.ID)
+            Produto.append(produto.SKU)
+            Produto.append(produto.nome)
+            Produto.append(produto.fabricante)
+            Produto.append(produto.valor)
+            self.listaEstoque.append(Produto.copy())
+            Produto = []
+        if len(self.produtosCadastrados) == len(self.listaEstoque):
+            return "Todos os produtos foram encontrado!"
