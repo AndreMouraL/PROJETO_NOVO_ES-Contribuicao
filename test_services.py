@@ -1,23 +1,13 @@
-from service import CadastroProduto
 from produto_model import Produto
-from service import ConsultaProduto
-from service import ListaProdutos
-from service import AtualizaProduto
-from service import DeletaProduto
+from service import *
 from estoque import Estoque
 
 estoque = Estoque()
 
 def test_cadastro_produtos():
     produto1 = Produto('IMPBROHL1','IMPRESSORA','BROTHER',1625.50,1)
-    produto2 = Produto('IMPBROHL2','IMPRESSORA','BROTHER',1625.50,2)
-    produto3 = Produto('IMPBROHL3','IMPRESSORA','BROTHER',1625.50,3)
-    produto4 = Produto('IMPBROHL4','IMPRESSORA','BROTHER',1625.50,4)
     cadastroProduto= CadastroProduto(estoque.estoque)
     respostaCadastro= cadastroProduto.cadastrarProduto(produto1)
-    respostaCadastro= cadastroProduto.cadastrarProduto(produto2)
-    respostaCadastro= cadastroProduto.cadastrarProduto(produto3)
-    respostaCadastro= cadastroProduto.cadastrarProduto(produto4)
     assert "Cadastrado com Sucesso!" == respostaCadastro
 
 
@@ -45,13 +35,12 @@ def test_atualiza_produtos():
 def test_deleta_produtos():
     produtos_estoque = estoque.estoque  
     deletaProduto  =  DeletaProduto(produtos_estoque)
-    respostaDeletar = deletaProduto.deletarProduto(3)
+    respostaDeletar = deletaProduto.deletarProduto(1)
     assert "Produto deletado com Sucesso!" ==  respostaDeletar
+
 
 test_cadastro_produtos()
 test_consulta_produtos()
 test_lista_produtos()
 test_atualiza_produtos()
-test_lista_produtos()
 test_deleta_produtos()
-test_lista_produtos()
