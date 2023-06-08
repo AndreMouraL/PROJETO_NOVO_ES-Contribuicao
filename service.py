@@ -1,11 +1,16 @@
 from produto_model import Produto
+from estoque import Estoque
+
 
 class CadastroProduto:
-    def __init__(self):
+    def __init__(self, estoque):
         self.produtosCadastrados = []
+        self.estoque =  estoque
     def cadastrarProduto(self, produto):
         self.produtosCadastrados.append(produto)
         if len(self.produtosCadastrados) > 0:
+            self.estoque.append(produto)
+            self.produtosCadastrados = []
             return "Cadastrado com Sucesso!"
 
 class ConsultaProduto:
@@ -32,7 +37,7 @@ class ListaProdutos:
             self.listaEstoque.append(Produto.copy())
             Produto = []
         if len(self.produtosCadastrados) == len(self.listaEstoque):
-            return "Todos os produtos foram encontrado!"
+            return "Todos os produtos foram encontrados!"
 
 
 class AtualizaProduto:
@@ -48,8 +53,8 @@ class AtualizaProduto:
         ProdutoAtualizando.setFabricante(fabricante)
         ProdutoAtualizando.setValor(valor)
         self.produtosCadastrados[indice] = ProdutoAtualizando
-        atualizaEstoque = CadastroProduto()
-        atualizaEstoque.produtosCadastrados == self.produtosCadastrados
+        atualizaEstoque = Estoque()
+        atualizaEstoque.estoque == self.produtosCadastrados
         return "Produto atualizado com Sucesso!"
     
 class DeletaProduto:
@@ -60,6 +65,31 @@ class DeletaProduto:
         Produtodeletando = consultaProduto.consultarProduto(id)
         indice = self.produtosCadastrados.index(Produtodeletando)
         del self.produtosCadastrados[indice]
-        atualizaEstoque = CadastroProduto()
-        atualizaEstoque.produtosCadastrados == self.produtosCadastrados
+        atualizaEstoque = Estoque()
+        atualizaEstoque.estoque == self.produtosCadastrados
         return "Produto deletado com Sucesso!"
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    '''
+    verificando consulta:
+    print(f'id: {produto.getID()}\nSKU: {produto.getSKU()}\nNome: {produto.getNome()}\n
+    Marca: {produto.getFabricante()}\nValor: {produto.getValor()}\n')
+    
+    verificando lista:
+    print(self.listaEstoque)
+    '''
