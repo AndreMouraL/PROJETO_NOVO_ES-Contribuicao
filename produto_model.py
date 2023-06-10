@@ -1,34 +1,40 @@
-class Produto:
+from sqlalchemy import Column, Integer, String, Float
+from sqlalchemy.ext.declarative import declarative_base
+
+Base = declarative_base()
+
+class Produto(Base):
+    __tablename__ = 'produtos'
+
+    id = Column(Integer, primary_key=True)
+    codigo = Column(String)
+    nomeProduto = Column(String)
+    nomeFabricante = Column(String)
+    _valorProduto = Column(Float)  
+
     def __init__(self, codigo, nomeProduto, nomeFabricante, valorProduto, id=None):
-        self.ID = id
-        self.SKU = codigo
-        self.nome = nomeProduto
-        self.fabricante = nomeFabricante
-        self.valor = valorProduto
+        self.id = id
+        self.codigo = codigo
+        self.nomeProduto = nomeProduto
+        self.nomeFabricante = nomeFabricante
+        self._valorProduto = valorProduto
 
-    def getID(self):
-        return self.ID
+    @property
+    def valorProduto(self):
+        return self._valorProduto
+
+    @property
+    def codigo(self):
+        return self.codigo
+
+    @property
+    def nomeProduto(self):
+        return self.nomeProduto
+
+    @property
+    def nomeFabricante(self):
+        return self.nomeFabricante
     
-    def getSKU(self):
-        return self.SKU
-
-    def getNome(self):
-        return self.nome
-
-    def getFabricante(self):
-        return self.fabricante
-
-    def getValor(self):
-        return self.valor
-    
-    def setSKU(self, novo_codigo):
-        self.SKU = novo_codigo
-
-    def setNome(self, novo_nome):
-        self.nome = novo_nome
-
-    def setFabricante(self, novo_fabricante):
-        self.fabricante = novo_fabricante
-
-    def setValor(self, novo_valor):
-        self.valor = novo_valor
+    @property
+    def id(self):
+        return self.id

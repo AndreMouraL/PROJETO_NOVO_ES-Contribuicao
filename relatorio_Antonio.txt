@@ -3,3 +3,5 @@
 - Dificuldades encontradas: 
     > Primeiro momento tive dificuldade em entender os processo da metodologia TDD, passado uma consulta e observando 
 exemplos da mesma sendo aplicada, alguns obstaculos foram superados.
+    > Segundo momento  tive dificuldade em entender como trabalhar com o ORM e a biblioteca sqlalchemy, passado
+uma consulta e observando exemplos ja existente na internet da mesma sendo aplicada os obstaculos foram superados.

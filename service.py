@@ -1,87 +1,87 @@
 from produto_model import Produto
-from estoque import Estoque
+from conexão import ConexaoBancoDados
+
 
 
 class CadastroProduto:
-    def __init__(self, estoque):
-        self.produtosCadastrados = []
-        self.estoque =  estoque
+    def __init__(self):
+        self.conn = ConexaoBancoDados()
     def cadastrarProduto(self, produto):
-        self.produtosCadastrados.append(produto)
-        if len(self.produtosCadastrados) > 0:
-            self.estoque.append(produto)
-            self.produtosCadastrados = []
+        self.conn.session.add(produto)
+        self.conn.session.commit()
+        mensagem = self.conn.fecharConexao()
+        if mensagem  == "Operação realizada com Sucesso!":
             return "Cadastrado com Sucesso!"
 
+
+
+
 class ConsultaProduto:
-    def __init__(self, estoque):
-        self.produtosCadastrados = estoque
+    def __init__(self):
+        self.conn = ConexaoBancoDados()
     def consultarProduto (self, id_produto):
-        for produto in self.produtosCadastrados:
-            if produto.getID() == id_produto:
-                return produto
+        produto = self.conn.session.query(Produto).get(id_produto)
+        mensagem = self.conn.fecharConexao() 
+        return produto, mensagem
+
 
 
 class ListaProdutos:
-    def __init__(self, estoque):
-        self.produtosCadastrados = estoque
-        self.listaEstoque = []
+    def __init__(self):
+        self.conn = ConexaoBancoDados()
     def listarProdutos (self):
-        Produto = []
-        for produto in self.produtosCadastrados:
-            Produto.append(produto.ID)
-            Produto.append(produto.SKU)
-            Produto.append(produto.nome)
-            Produto.append(produto.fabricante)
-            Produto.append(produto.valor)
-            self.listaEstoque.append(Produto.copy())
-            Produto = []
-        if len(self.produtosCadastrados) == len(self.listaEstoque):
-            return "Todos os produtos foram encontrados!"
+        produtos = self.conn.session.query(Produto).all()
+        if produtos:
+            for produto in produtos:
+                print("ID:", produto.id)
+                print("Código:", produto.codigo)
+                print("Nome do Produto:", produto.nomeProduto)
+                print("Nome do Fabricante:", produto.nomeFabricante)
+                print("Valor do Produto:", produto.valorProduto)
+                mensagem = self.conn.fecharConexao()
+                if mensagem  == "Operação realizada com Sucesso!":
+                    return "Todos os produtos foram encontrados!"
+        else:
+            print("Não existem produtos cadastrados.")
+
+
 
 
 class AtualizaProduto:
-    def __init__(self, estoque, id):
-        self.produtosCadastrados = estoque
-        self.idaltera = id
-    def atualizarProduto (self, sku, nome, fabricante, valor):
-        consultaProduto = ConsultaProduto(self.produtosCadastrados)
-        ProdutoAtualizando = consultaProduto.consultarProduto(self.idaltera)
-        indice = self.produtosCadastrados.index(ProdutoAtualizando)
-        ProdutoAtualizando.setSKU(sku)
-        ProdutoAtualizando.setNome(nome)
-        ProdutoAtualizando.setFabricante(fabricante)
-        ProdutoAtualizando.setValor(valor)
-        self.produtosCadastrados[indice] = ProdutoAtualizando
-        atualizaEstoque = Estoque()
-        atualizaEstoque.estoque == self.produtosCadastrados
-        return "Produto atualizado com Sucesso!"
-    
+    def __init__(self, id):
+        self.conn = ConexaoBancoDados()
+        self.produto_p_alterar = self.conn.session.query(Produto).get(id)
+    def atualizarProduto(self, sku, nome, fabricante, valor):
+        if self.produto_p_alterar is not None:
+            self.produto_p_alterar.codigo = sku
+            self.produto_p_alterar.nomeProduto = nome
+            self.produto_p_alterar.nomeFabricante = fabricante
+            self.produto_p_alterar.valorProduto = valor
+            self.conn.session.merge(self.produto_p_alterar)
+            self.conn.session.commit()
+            mensagem = self.conn.fecharConexao()
+            if mensagem  == "Operação realizada com Sucesso!":
+                print("Produto atualizado com sucesso!")
+                return "Produto atualizado com sucesso!"
+        else:
+            print("Produto não encontrado.")
+
+
+
 class DeletaProduto:
-    def __init__(self, estoque):
-        self.produtosCadastrados = estoque
+    def __init__(self):
+        self.conn = ConexaoBancoDados()
     def deletarProduto(self, id):
-        consultaProduto = ConsultaProduto(self.produtosCadastrados)
-        Produtodeletando = consultaProduto.consultarProduto(id)
-        indice = self.produtosCadastrados.index(Produtodeletando)
-        del self.produtosCadastrados[indice]
-        atualizaEstoque = Estoque()
-        atualizaEstoque.estoque == self.produtosCadastrados
-        return "Produto deletado com Sucesso!"
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
+        produto_p_deletar = self.conn.session.query(Produto).get(id)
+        if produto_p_deletar is not None:
+            self.conn.session.delete(produto_p_deletar)
+            self.conn.session.commit()
+            mensagem = self.conn.fecharConexao()
+            if mensagem  == "Operação realizada com Sucesso!":
+                print("Produto deletado com sucesso.")
+                return "Produto deletado com Sucesso!"
+        else:
+            print("Produto não encontrado.")
 
 
 

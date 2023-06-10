@@ -1,8 +1,5 @@
 from produto_model import Produto
 from service import *
-from estoque import Estoque
-
-estoque = Estoque()
 
 def test_cadastro_produtos():
     produto1 = Produto('IMPBROHL1','IMPRESSORA','BROTHER',1625.50,1)
@@ -39,8 +36,8 @@ def test_deleta_produtos():
     assert "Produto deletado com Sucesso!" ==  respostaDeletar
 
 
-test_cadastro_produtos()
-test_consulta_produtos()
-test_lista_produtos()
-test_atualiza_produtos()
-test_deleta_produtos()
+# test_cadastro_produtos()
+# test_consulta_produtos()
+# test_lista_produtos()
+# test_atualiza_produtos()
+# test_deleta_produtos()

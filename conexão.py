@@ -14,9 +14,8 @@ class ConexaoBancoDados:
 
     def fecharConexao(self):
         self.session.close()
+        return 'Operação realizada com Sucesso!'
 
-
-conn =  ConexaoBancoDados()
 
 
 
