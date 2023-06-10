@@ -1,5 +1,5 @@
 from sqlalchemy import Column, Integer, String, Float
-from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import declarative_base
 
 Base = declarative_base()
 
@@ -7,34 +7,34 @@ class Produto(Base):
     __tablename__ = 'produtos'
 
     id = Column(Integer, primary_key=True)
-    codigo = Column(String)
-    nomeProduto = Column(String)
-    nomeFabricante = Column(String)
-    _valorProduto = Column(Float)  
+    SKU = Column(String)
+    nome = Column(String)
+    fabricante = Column(String)
+    valor = Column(Float)  
 
-    def __init__(self, codigo, nomeProduto, nomeFabricante, valorProduto, id=None):
+    def __init__(self, SKU, nome, fabricante, valor, id=None):
         self.id = id
-        self.codigo = codigo
-        self.nomeProduto = nomeProduto
-        self.nomeFabricante = nomeFabricante
-        self._valorProduto = valorProduto
+        self.SKU = SKU
+        self.nome = nome
+        self.fabricante = fabricante
+        self.valor = valor
 
     @property
     def valorProduto(self):
-        return self._valorProduto
+        return self.valor
 
     @property
-    def codigo(self):
-        return self.codigo
+    def get_codigo(self):
+        return self.SKU
 
     @property
-    def nomeProduto(self):
-        return self.nomeProduto
+    def get_nomeProduto(self):
+        return self.nome
 
     @property
-    def nomeFabricante(self):
-        return self.nomeFabricante
+    def get_nomeFabricante(self):
+        return self.fabricante
     
     @property
-    def id(self):
+    def get_id(self):
         return self.id
