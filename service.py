@@ -2,7 +2,6 @@ from produto_model import Produto
 from conexão import ConexaoBancoDados
 
 
-
 class CadastroProduto:
     def __init__(self):
         self.conn = ConexaoBancoDados()
@@ -51,7 +50,7 @@ class ListaProdutos:
 class AtualizaProduto:
     def __init__(self, id):
         self.conn = ConexaoBancoDados()
-        self.produto_p_alterar = self.conn.session.get(Produto,id)
+        self.produto_p_alterar = self.conn.session.get(Produto, id)
     def atualizarProduto(self, sku, nome, fabricante, valor):
         if self.produto_p_alterar is not None:
             self.produto_p_alterar.SKU = sku
@@ -62,10 +61,10 @@ class AtualizaProduto:
             self.conn.session.commit()
             mensagem = self.conn.fecharConexao()
             if mensagem  == "Operação realizada com Sucesso!":
-                print("Produto atualizado com Sucesso!")
+                # print("Produto atualizado com Sucesso!")
                 return "Produto atualizado com Sucesso!"
         else:
-            print("Produto não encontrado.")
+            return "Produto não encontrado."
 
 
 
@@ -73,7 +72,7 @@ class DeletaProduto:
     def __init__(self):
         self.conn = ConexaoBancoDados()
     def deletarProduto(self, id):
-        produto_p_deletar = self.conn.session.get(Produto,id)
+        produto_p_deletar = self.conn.session.get(Produto, id)
         if produto_p_deletar is not None:
             self.conn.session.delete(produto_p_deletar)
             self.conn.session.commit()
@@ -82,7 +81,7 @@ class DeletaProduto:
                 print("Produto deletado com sucesso.")
                 return "Produto deletado com Sucesso!"
         else:
-            print("Produto não encontrado.")
+            return "Produto não encontrado."
 
 
 
