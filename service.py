@@ -1,7 +1,6 @@
 from produto_model import Produto
 from conexão import ConexaoBancoDados
 
-
 class CadastroProduto:
     def __init__(self):
         self.conn = ConexaoBancoDados()
